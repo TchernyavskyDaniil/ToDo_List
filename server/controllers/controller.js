@@ -1,7 +1,5 @@
 const toDoService = require('../services/service');
 
-_this = this;
-
 exports.getTodos = async function (req, res) {
   const page = req.query.page ? req.query.page : 1;
   const limit = req.query.limit ? req.query.limit : 1;

@@ -6,8 +6,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
 @NgModule({
   declarations: [
     AppComponent
@@ -15,8 +13,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule,
-    NgbModule.forRoot()
+    FormsModule
   ],
   providers: [
     TodoService

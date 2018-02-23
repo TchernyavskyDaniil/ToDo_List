@@ -13,7 +13,7 @@ const toDoSchema = new mongoose.Schema({
 });
 
 toDoSchema.plugin(mongoosePaginate);
-const toDo = mongoose.model('ToDo', toDoSchema);
+const toDo = mongoose.model('toDo', toDoSchema);
 
 module.exports = toDo;
 

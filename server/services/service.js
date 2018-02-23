@@ -1,7 +1,5 @@
 const toDo = require('../models/model');
 
-_this = this;
-
 exports.getTodos = async function (query, page, limit) {
     // Настройка для mongoose paginate
     const options = {
@@ -67,8 +65,10 @@ exports.updateTodo = async function (todo) {
 };
 
 exports.deleteTodo = async function (id) {
+  let deletedTodo;
+
   try {
-      const deletedTodo = await toDo.remove({_id: id});
+      deletedTodo = await toDo.remove({_id: id});
       if (deletedTodo.result.n === 0) {
           throw new Error('TODO not deleted');
       }

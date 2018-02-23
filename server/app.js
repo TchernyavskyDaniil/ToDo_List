@@ -16,12 +16,12 @@ const app = express();
 let mongoose = require('mongoose');
 mongoose.Promise = bluebird;
 mongoose.connect('mongodb://tchernyavskyd:12345@ds247078.mlab.com:47078/todo_list_test')
-.then(() => {
-  console.log('Connect to DB - successful')
-})
-.catch(() => {
-  console.log('Failed connect to DB')
-});
+  .then(() => {
+    console.log('Connect to DB - successful')
+  })
+  .catch(() => {
+    console.log('Failed connect to DB')
+  });
 
 /**
  * Потому что используем два разных порта
@@ -53,7 +53,7 @@ app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  let err = new Error('Not Found');
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
