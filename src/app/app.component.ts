@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     private todoService: TodoService
   ) { }
 
-  public newTodo: ToDo = new ToDo()
+  public newTodo: ToDo = new ToDo();
 
   todosList: ToDo[];
   editTodos: ToDo[] = [];
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.todoService.getToDos()
       .subscribe(todos => {
-        this.todosList = todos
+        this.todosList = todos;
         console.log(todos)
       })
   }
@@ -31,34 +31,34 @@ export class AppComponent implements OnInit {
   create() {
     this.todoService.createTodo(this.newTodo)
       .subscribe((res) => {
-        this.todosList.push(res.data)
+        this.todosList.push(res.data);
         this.newTodo = new ToDo()
       })
   }
 
   editTodo(todo: ToDo) {
-    console.log(todo)
     if(this.todosList.includes(todo)){
+      console.log(this.todosList + "Todo List Array");
       if(!this.editTodos.includes(todo)){
         this.editTodos.push(todo)
-      }else{
-        this.editTodos.splice(this.editTodos.indexOf(todo), 1)
+      } else {
+        this.editTodos.splice(this.editTodos.indexOf(todo), 1);
         this.todoService.editTodo(todo).subscribe(res => {
-          console.log('Update Succesful')
+          console.log('Update Succesful!')
         }, err => {
-          this.editTodo(todo)
-          console.error('Update Unsuccesful')
+          this.editTodo(todo);
+          console.error('Update Unsuccesful! :(')
         })
       }
     }
   }
 
   doneTodo(todo:ToDo){
-    todo.status = 'Done'
+    todo.status = 'Done';
     this.todoService.editTodo(todo).subscribe(res => {
       console.log('Update Succesful')
     }, err => {
-      this.editTodo(todo)
+      this.editTodo(todo);
       console.error('Update Unsuccesful')
     })
   }
@@ -74,9 +74,4 @@ export class AppComponent implements OnInit {
       this.todosList.splice(this.todosList.indexOf(todo), 1);
     })
   }
-
-
-  title = 'app';
-
-
 }

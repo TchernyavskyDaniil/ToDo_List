@@ -24,18 +24,18 @@ export class TodoService {
 
   getToDos(): Observable<ToDo[]>{
     return this.http.get(this.todoUrl)
-    .map(res  => {
+    .map(res => {
       return res["data"].docs as ToDo[];
     })
   }
 
   editTodo(todo:ToDo){
-    let editUrl = `${this.todoUrl}`
+    let editUrl = `${this.todoUrl}`;
     return this.http.put(editUrl, todo);
   }
 
   deleteTodo(id:string):any{
-    let deleteUrl = `${this.todoUrl}/${id}`
+    let deleteUrl = `${this.todoUrl}/${id}`;
     return this.http.delete(deleteUrl)
     .map(res  => {
       return res;

@@ -7,9 +7,9 @@ class ToDo {
 
     constructor(
     ){
-        this.title = ""
-        this.description = ""
-        this.date = new Date()
+        this.title = "";
+        this.description = "";
+        this.date = new Date();
         this.status = ""
     }
 }
