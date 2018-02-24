@@ -1,38 +1,43 @@
 const toDo = require('../models/model');
 
+_this = this;
+
 exports.getTodos = async function (query, page, limit) {
-    // Настройка для mongoose paginate
-    const options = {
-        page,
-        limit
-    };
+  // Настройка для mongoose paginate
+  const options = {
+    page,
+    limit
+  };
 
-    try {
-      const todos = await toDo.paginate(query, options);
+  let todos;
 
-      return todos;
-    } catch (error) {
-        throw new Error('Pagination Todos - ERROR');
-    }
+  try {
+    todos = await toDo.paginate(query, options);
+
+    return todos;
+
+  } catch (error) {
+    throw new Error('Pagination Todos - ERROR');
+  }
 };
 
 exports.createTodo = async function (todo) {
   // Создаем новый объект Mongoose
-  const newTodo = new toDo({
-      title: todo.title,
-      description: todo.description,
-      date: new Date(),
-      status: todo.status
+  let newTodo = new toDo({
+    title: todo.title,
+    description: todo.description,
+    date: new Date(),
+    status: todo.status
   });
 
   let saveTodo;
 
   try {
-      saveTodo = await newTodo.save();
+    saveTodo = await newTodo.save();
 
-      return saveTodo;
+    return saveTodo;
   } catch (error) {
-      throw new Error('Creating Todo - ERROR');
+    throw new Error('Creating Todo - ERROR');
   }
 };
 
@@ -42,14 +47,14 @@ exports.updateTodo = async function (todo) {
   let newTodo;
 
   try {
-      oldTodo = await toDo.findById(id);
+    oldTodo = await toDo.findById(id);
   } catch (error) {
-      throw new Error('Finding Todo - ERROR');
+    throw new Error('Finding Todo - ERROR');
   }
 
   // Если нет старых
   if (!oldTodo) {
-      return false;
+    return false;
   }
 
   oldTodo.title = todo.title;
@@ -57,10 +62,10 @@ exports.updateTodo = async function (todo) {
   oldTodo.status = todo.status;
 
   try {
-      newTodo = await oldTodo.save();
-      return newTodo;
+    newTodo = await oldTodo.save();
+    return newTodo;
   } catch (error) {
-      throw new Error('Saved todo - ERROR');
+    throw new Error('Saved todo - ERROR');
   }
 };
 
@@ -68,14 +73,15 @@ exports.deleteTodo = async function (id) {
   let deletedTodo;
 
   try {
-      deletedTodo = await toDo.remove({_id: id});
-      if (deletedTodo.result.n === 0) {
-          throw new Error('TODO not deleted');
-      }
+    console.log(toDo.remove({_id: id}));
+    deletedTodo = await toDo.remove({_id: id});
+    if (deletedTodo.result.n === 0) {
+      throw new Error('TODO not deleted');
+    }
 
-      return deletedTodo;
+    return deletedTodo;
   } catch (error) {
-      throw new Error('TODO not deleted x2');
+    throw new Error('TODO not deleted x2');
   }
 };
 
