@@ -1,14 +1,11 @@
 Простая и плохо работающая тудушка на MEAN стеке.
-
-1) cd server
-   npm install
-   npm start
-   Сервер запущен
    
-   БД в облаке на mlab
+1. cd server
+2. npm install
+3. npm start
+Сервер запущен
 
-2) cd ..
-   npm install
-   ng serve --open
-   
+4. cd ..
+5. npm install
+6. ng serve --open
 
